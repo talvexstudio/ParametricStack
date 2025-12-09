@@ -37,7 +37,9 @@ export class ParamAnimator {
           return;
         }
 
-        (this.state as Record<string, unknown>)[key as string] = value;
+        (
+          (this.state as unknown as Record<string, unknown>)[key as string]
+        ) = value;
       },
     );
 

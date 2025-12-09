@@ -1,5 +1,5 @@
 import './style.css';
-import { Color, MathUtils, type Group } from 'three';
+import { Color, MathUtils, type Group, type Object3D } from 'three';
 import { createScene } from './core/scene';
 import { buildTower } from './tower/towerGenerator';
 import { createControlPanel, defaultParams } from './ui/controls';
@@ -45,9 +45,13 @@ const applyEnvironment = (state: TowerParameterState) => {
   ambientLight.intensity = state.ambientIntensity;
   renderer.shadowMap.enabled = state.enableShadows;
 
-  tower?.traverse((child) => {
-    child.castShadow = state.enableShadows;
-    child.receiveShadow = state.enableShadows;
+  tower?.traverse((child: Object3D) => {
+    if ('castShadow' in child && 'receiveShadow' in child) {
+      (child as { castShadow: boolean; receiveShadow: boolean }).castShadow =
+        state.enableShadows;
+      (child as { castShadow: boolean; receiveShadow: boolean }).receiveShadow =
+        state.enableShadows;
+    }
   });
 
   ground.receiveShadow = state.enableShadows;

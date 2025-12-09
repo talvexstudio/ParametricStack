@@ -22,7 +22,7 @@ export class ParamAnimator {
   }
 
   tweenTo(next: TowerParameterState) {
-    const tweenPayload: Partial<TowerParameterState> = {};
+    const tweenPayload: Record<string, number> = {};
 
     (Object.keys(next) as Array<keyof TowerParameterState>).forEach(
       (key) => {
@@ -37,7 +37,7 @@ export class ParamAnimator {
           return;
         }
 
-        this.state[key] = value as TowerParameterState[typeof key];
+        (this.state as Record<string, unknown>)[key as string] = value;
       },
     );
 

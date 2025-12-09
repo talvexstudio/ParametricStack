@@ -1,4 +1,4 @@
-# 20251204_ParametricTower
+# ParametricStack
 
 An experimental WebGL parametric tower generator that stacks procedural slabs in the browser and exposes twist, scale, height, and gradient ranges through a lightweight slider UI. Three.js handles the rendering, while lil-gui, gsap, and tinycolor2 coordinate the interactive parameter workflow so designers can iterate without leaving the viewport.
 
